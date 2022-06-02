@@ -29,12 +29,13 @@ jobs:
           TCR_WEB_CDN: ${{ secrets.TCR_WEB_CDN }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
-          cd ${GITHUB_WORKSPACE}/coverage/icov-report
-          aws s3 cp . ${{ env.TCR_WEB_S3_PATH }} --region ${{ env.AWS_REGION }}          
-      - name: Invalidate CDN cache for test-coverage report
-        env:
-          TCR_WEB_S3_PATH: ${{ secrets.TCR_WEB_S3_PATH }}
-          TCR_WEB_CDN: ${{ secrets.TCR_WEB_CDN }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-        run: |
-          aws cloudfront create-invalidation --distribution-id ${{ env.TCR_WEB_CDN }} --paths "/*"
+          ls -l
+      #     cd ${GITHUB_WORKSPACE}/coverage/icov-report
+      #     aws s3 cp . ${{ env.TCR_WEB_S3_PATH }} --region ${{ env.AWS_REGION }}          
+      # - name: Invalidate CDN cache for test-coverage report
+      #   env:
+      #     TCR_WEB_S3_PATH: ${{ secrets.TCR_WEB_S3_PATH }}
+      #     TCR_WEB_CDN: ${{ secrets.TCR_WEB_CDN }}
+      #     AWS_REGION: ${{ secrets.AWS_REGION }}
+      #   run: |
+      #     aws cloudfront create-invalidation --distribution-id ${{ env.TCR_WEB_CDN }} --paths "/*"
