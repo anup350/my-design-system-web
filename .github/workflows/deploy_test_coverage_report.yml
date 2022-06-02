@@ -27,10 +27,10 @@ jobs:
       # - name: Push generated files to android repository
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB_2 }}
         with:
-          user_name: ${{ secrets.GIT_COMMIT_AUTHOR_NAME }}
-          user_email: ${{ secrets.GIT_COMMIT_AUTHOR_EMAIL }}
+          user_name: 'anup350'
+          user_email: 'anup.salunke@ymedialabs.com'
           source_file: 'coverage/lcov-report/'
           destination_repo: 'anup350/my-design-system-web'
           destination_branch: 'gh-pages'
