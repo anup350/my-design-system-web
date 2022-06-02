@@ -29,7 +29,7 @@ jobs:
           TCR_WEB_CDN: ${{ secrets.TCR_WEB_CDN }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
-          ls -l
+          ls -l coverage
       #     cd ${GITHUB_WORKSPACE}/coverage/icov-report
       #     aws s3 cp . ${{ env.TCR_WEB_S3_PATH }} --region ${{ env.AWS_REGION }}          
       # - name: Invalidate CDN cache for test-coverage report
