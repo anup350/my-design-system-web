@@ -15,10 +15,8 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.4.0
       - name: Display path
-        run:
-          ls -l
-          pwd
-          echo ${GITHUB_WORKSPACE}
+        shell: bash
+        run: echo ${GITHUB_WORKSPACE}
       # - name: Install node modules
       # # Convert tokens according to Style Dictionary config
       #   run: npm i --force
