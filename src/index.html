@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html
+	dir="ltr"
+	lang="en"
+>
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+		/>
+		<title>Mayo Clinic - Stencil Components</title>
+		<style>
+			body {
+				margin: 0;
+				font-family: serif;
+				font-size: 14px;
+				color: var(--mono-70);
+				overflow-x: hidden;
+			}
+
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6,
+			p {
+				margin: 0;
+			}
+
+			/* Containers */
+			/* Adding for demo purpose only */
+			.container {
+				margin: 50px auto;
+				max-width: 800px;
+			}
+			.container .row {
+				margin: 24px auto;
+				display: flex;
+				flex-direction: column;
+			}
+			.container .row .row {
+				display: flex;
+				flex-direction: row;
+				padding: 1.5rem;
+				margin: 0;
+			}
+			.container .row.space-between {
+				justify-content: space-between;
+			}
+			.container .row.center {
+				justify-content: center;
+			}
+			.container .row.v-center {
+				align-items: center;
+			}
+
+			.container .row .row h3 {
+				padding: 1rem 0;
+			}
+
+			.container .row .cell {
+				max-width: 40rem;
+			}
+
+			.hr {
+				border-bottom: 1px solid var(--mono-15);
+			}
+
+			.center {
+				text-align: center;
+			}
+		</style>
+		<link
+			rel="stylesheet"
+			href="/build/mayo-design-system.css"
+		/>
+		<script
+			type="module"
+			src="/build/mayo-design-system.esm.js"
+		></script>
+		<script
+			nomodule
+			src="/build/mayo-design-system.js"
+		></script>
+
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<h3>Mayo Clinic Buttons</h3>
+				<div class="row hr">
+					<mc-button
+						appearance="primary"
+						disabled="true"
+						>Disabled Primary Button</mc-button
+					>
+				</div>
+				<div class="row hr">
+					<mc-button appearance="primary">Primary Button</mc-button>
+				</div>
+				<div class="row hr">
+					<mc-button
+						id="calendar-button"
+						appearance="primary"
+					>
+						<svg
+							slot="icon"
+							width="32"
+							height="32"
+							viewBox="0 0 32 32"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path d="M24.5556 28H7.44444C6.09441 28 5 26.9255 5 25.6V8.8C5 7.47452 6.09441 6.4 7.44444 6.4H9.88889V4H12.3333V6.4H19.6667V4H22.1111V6.4H24.5556C25.9056 6.4 27 7.47452 27 8.8V25.6C27 26.9255 25.9056 28 24.5556 28ZM7.44444 13.6V25.6H24.5556V13.6H7.44444ZM7.44444 8.8V11.2H24.5556V8.8H7.44444ZM22.1111 23.2H19.6667V20.8H22.1111V23.2ZM17.2222 23.2H14.7778V20.8H17.2222V23.2ZM12.3333 23.2H9.88889V20.8H12.3333V23.2ZM22.1111 18.4H19.6667V16H22.1111V18.4ZM17.2222 18.4H14.7778V16H17.2222V18.4ZM12.3333 18.4H9.88889V16H12.3333V18.4Z" />
+						</svg>
+						Calendar
+					</mc-button>
+				</div>
+				<div class="row hr">
+					<mc-button
+						appearance="primary"
+						icon-only="true"
+						screen-reader-text="Calendar Datepicker"
+					>
+						<svg
+							slot="icon"
+							width="32"
+							height="32"
+							viewBox="0 0 32 32"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path d="M24.5556 28H7.44444C6.09441 28 5 26.9255 5 25.6V8.8C5 7.47452 6.09441 6.4 7.44444 6.4H9.88889V4H12.3333V6.4H19.6667V4H22.1111V6.4H24.5556C25.9056 6.4 27 7.47452 27 8.8V25.6C27 26.9255 25.9056 28 24.5556 28ZM7.44444 13.6V25.6H24.5556V13.6H7.44444ZM7.44444 8.8V11.2H24.5556V8.8H7.44444ZM22.1111 23.2H19.6667V20.8H22.1111V23.2ZM17.2222 23.2H14.7778V20.8H17.2222V23.2ZM12.3333 23.2H9.88889V20.8H12.3333V23.2ZM22.1111 18.4H19.6667V16H22.1111V18.4ZM17.2222 18.4H14.7778V16H17.2222V18.4ZM12.3333 18.4H9.88889V16H12.3333V18.4Z" />
+						</svg>
+					</mc-button>
+				</div>
+				<div
+					dir="rtl"
+					lang="ar"
+					class="row hr"
+				>
+					<mc-button appearance="primary">
+						<svg
+							slot="icon"
+							width="32"
+							height="32"
+							viewBox="0 0 32 32"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path d="M24.5556 28H7.44444C6.09441 28 5 26.9255 5 25.6V8.8C5 7.47452 6.09441 6.4 7.44444 6.4H9.88889V4H12.3333V6.4H19.6667V4H22.1111V6.4H24.5556C25.9056 6.4 27 7.47452 27 8.8V25.6C27 26.9255 25.9056 28 24.5556 28ZM7.44444 13.6V25.6H24.5556V13.6H7.44444ZM7.44444 8.8V11.2H24.5556V8.8H7.44444ZM22.1111 23.2H19.6667V20.8H22.1111V23.2ZM17.2222 23.2H14.7778V20.8H17.2222V23.2ZM12.3333 23.2H9.88889V20.8H12.3333V23.2ZM22.1111 18.4H19.6667V16H22.1111V18.4ZM17.2222 18.4H14.7778V16H17.2222V18.4ZM12.3333 18.4H9.88889V16H12.3333V18.4Z" />
+						</svg>
+						تقويم
+					</mc-button>
+				</div>
+				<div
+					dir="rtl"
+					lang="ar"
+					class="row hr"
+				>
+					<mc-button
+						appearance="primary"
+						icon-only="true"
+						screen-reader-text="منتقي بيانات التقويم"
+					>
+						<svg
+							slot="icon"
+							width="32"
+							height="32"
+							viewBox="0 0 32 32"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path d="M24.5556 28H7.44444C6.09441 28 5 26.9255 5 25.6V8.8C5 7.47452 6.09441 6.4 7.44444 6.4H9.88889V4H12.3333V6.4H19.6667V4H22.1111V6.4H24.5556C25.9056 6.4 27 7.47452 27 8.8V25.6C27 26.9255 25.9056 28 24.5556 28ZM7.44444 13.6V25.6H24.5556V13.6H7.44444ZM7.44444 8.8V11.2H24.5556V8.8H7.44444ZM22.1111 23.2H19.6667V20.8H22.1111V23.2ZM17.2222 23.2H14.7778V20.8H17.2222V23.2ZM12.3333 23.2H9.88889V20.8H12.3333V23.2ZM22.1111 18.4H19.6667V16H22.1111V18.4ZM17.2222 18.4H14.7778V16H17.2222V18.4ZM12.3333 18.4H9.88889V16H12.3333V18.4Z" />
+						</svg>
+					</mc-button>
+				</div>
+				<div
+					class="row hr"
+				>
+					<mc-button
+						appearance="primary"
+						screen-reader-text="日历日期选择器"
+					>
+						<svg
+							slot="icon"
+							width="32"
+							height="32"
+							viewBox="0 0 32 32"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path d="M24.5556 28H7.44444C6.09441 28 5 26.9255 5 25.6V8.8C5 7.47452 6.09441 6.4 7.44444 6.4H9.88889V4H12.3333V6.4H19.6667V4H22.1111V6.4H24.5556C25.9056 6.4 27 7.47452 27 8.8V25.6C27 26.9255 25.9056 28 24.5556 28ZM7.44444 13.6V25.6H24.5556V13.6H7.44444ZM7.44444 8.8V11.2H24.5556V8.8H7.44444ZM22.1111 23.2H19.6667V20.8H22.1111V23.2ZM17.2222 23.2H14.7778V20.8H17.2222V23.2ZM12.3333 23.2H9.88889V20.8H12.3333V23.2ZM22.1111 18.4H19.6667V16H22.1111V18.4ZM17.2222 18.4H14.7778V16H17.2222V18.4ZM12.3333 18.4H9.88889V16H12.3333V18.4Z" />
+						</svg>
+						日历
+					</mc-button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

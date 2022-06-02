@@ -1,0 +1,18 @@
+@use "../tokens/styles";
+
+@mixin globals {
+	//
+	--action-size-small: var(--size-32);
+	--action-size-base: var(--size-48);
+	--action-size-large: var(--size-56);
+	//
+	--action-spacing-small: var(--spacing-16);
+	--action-spacing-base: var(--spacing-32);
+	--action-spacing-large: var(--spacing-48);
+	//
+	--action-icon-size-small: var(--size-24);
+	--action-icon-size-base: var(--size-32);
+	--action-icon-size-large: var(--size-48);
+	//
+	--action-icon-spacing-base: var(--spacing-8);
+}

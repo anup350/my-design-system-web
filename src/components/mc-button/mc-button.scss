@@ -1,0 +1,126 @@
+:host {
+	--action-button-background-color: var(--action-background-color);
+	--action-button-background-color-hover: var(--action-background-color-hover);
+	--action-button-background-color-active: var(--action-background-color-active);
+	--action-button-text-color: var(--action-text-color);
+	--action-button-text-family: var(--base-font-family);
+	--action-button-text-size: var(--base-font-size);
+	--action-button-text-weight: var(--base-font-weight);
+	--action-button-radius: var(--action-radius);
+	--action-button-size: var(--action-size-base);
+	--action-button-inline-spacing: var(--action-spacing-base);
+	--action-button-icon-size: var(--action-icon-size-base);
+	--action-button-icon-spacing: var(--action-icon-spacing-base);
+
+	// Button specific styles
+	display: inline-block;
+	width: auto;
+	vertical-align: top; // the better option for most scenarios
+	vertical-align: -webkit-baseline-middle; // the best for those that support it
+
+	text-align: center;
+	text-decoration: none;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+	font-kerning: none;
+}
+
+slot[name="icon"]::slotted(svg),
+slot[name="icon"]::slotted(img) {
+	fill: currentColor;
+	stroke: none;
+	height: var(--action-button-icon-size);
+	width: var(--action-button-icon-size);
+
+	margin-inline-end: var(--action-button-icon-spacing);
+}
+
+.icon-only {
+	slot[name="icon"]::slotted(svg),
+	slot[name="icon"]::slotted(img) {
+		margin: 0;
+	}
+
+	--action-button-inline-spacing: var(--action-spacing-small);
+}
+
+button {
+	background-color: var(--default-background);
+	border-color: var(--default-border-color);
+	border-style: var(--default-border-style);
+	border-width: var(--default-border-size);
+	border-radius: var(--default-radius);
+
+	color: var(--default-text-color);
+	cursor: pointer;
+	font-family: var(--action-button-text-family);
+	font-size: var(--action-button-text-size);
+	font-weight: var(--action-button-text-weight);
+
+	padding-inline-start: var(--action-button-inline-spacing);
+	padding-inline-end: var(--action-button-inline-spacing);
+	outline-color: 2px solid transparent;
+	outline-offset: 0;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	text-decoration: inherit;
+
+	display: block;
+	height: 100%;
+	position: relative;
+
+	transition: ease-in-out 250ms;
+
+	&:hover:not(:disabled),
+	&:focus {
+		background-color: var(--default-background-color-hover);
+	}
+	&:focus-visible {
+		outline: 2px solid var(--default-background-color-active);
+		outline-offset: 2px;
+	}
+	&:active:not(:disabled) {
+		background-color: var(--default-background-color-active);
+	}
+
+	&.primary {
+		background-color: var(--action-button-background-color);
+		border-width: var(--action-border-size);
+		border-radius: var(--action-button-radius);
+		color: var(--action-button-text-color);
+		min-height: var(--action-size-base);
+
+		&:hover:not(:disabled),
+		&:focus {
+			background-color: var(--action-button-background-color-hover);
+		}
+		&:focus,
+		&:focus-visible {
+			outline-color: var(--action-button-background-color-hover);
+		}
+		&:active:not(:disabled) {
+			background-color: var(--action-button-background-color-active);
+		}
+	}
+
+	&:disabled {
+		background-color: var(--default-background);
+		color: var(--default-border-color);
+		cursor: not-allowed;
+	}
+
+	.btn__inner {
+		display: flex;
+		position: relative;
+		flex-flow: row nowrap;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+		min-height: var(--action-size-base);
+		z-index: 1;
+	}
+}

@@ -1,0 +1,16 @@
+{
+	"parserOptions": {
+		"project": "./tsconfig.json",
+		"sourceType": "module",
+		"ecmaVersion": 2018
+	},
+	"extends": [
+		"plugin:@stencil/recommended"
+	],
+	"rules": {
+		"quotes": ["error", "single"],
+		"eqeqeq": ["error", "always"],
+		"no-eval": "error",
+		"no-console": ["error", { "allow": ["warn", "error"] }]
+	}
+}
