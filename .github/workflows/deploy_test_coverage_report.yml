@@ -23,6 +23,11 @@ jobs:
       - name: Run test coverage
         run: |
           npm run test-coverage
+      - name: Deploy to GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          branch: gh-pages
+          folder: docs
       - name: Deploy test coverage report to s3
         run: |
           cd ${GITHUB_WORKSPACE}/coverage/lcov-report
