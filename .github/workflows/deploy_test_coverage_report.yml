@@ -34,7 +34,7 @@ jobs:
           source_file: 'coverage/lcov-report/'
           destination_repo: 'anup350/my-design-system-web'
           destination_branch: 'gh-pages'
-          destination_folder: 'docs'
+          destination_folder: '/'
           commit_message: 'Updating styles from Figma'
       # - name: Deploy test coverage report to s3
       #   run: |
