@@ -12,29 +12,30 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2.4.0
-      # - name: Display path
-      #   shell: bash
-      #   run: echo ${GITHUB_WORKSPACE}
-      - name: Install node modules
-      # Convert tokens according to Style Dictionary config
-        run: npm i --force
-      - name: Run test coverage
-        run: |
-          npm run test-coverage
+      # - name: Setup Node.js environment
+      #   uses: actions/setup-node@v2.4.0
+      # # - name: Display path
+      # #   shell: bash
+      # #   run: echo ${GITHUB_WORKSPACE}
+      # - name: Install node modules
+      # # Convert tokens according to Style Dictionary config
+      #   run: npm i --force
+      # - name: Run test coverage
+      #   run: |
+      #     npm run test-coverage
       - name: Deploy test coverage report to s3
-        env:
-          TCR_WEB_S3_PATH: ${{ secrets.TCR_WEB_S3_PATH }}
-          TCR_WEB_CDN: ${{ secrets.TCR_WEB_CDN }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
+        # env:
+        #   TCR_WEB_S3_PATH: ${{ secrets.TCR_WEB_S3_PATH }}
+        #   TCR_WEB_CDN: ${{ secrets.TCR_WEB_CDN }}
+        #   AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
-          cd ${GITHUB_WORKSPACE}/coverage/lcov-report
-          aws s3 cp . ${{ env.TCR_WEB_S3_PATH }} --region ${{ env.AWS_REGION }}          
-      - name: Invalidate CDN cache for test-coverage report
-        env:
-          TCR_WEB_S3_PATH: ${{ secrets.TCR_WEB_S3_PATH }}
-          TCR_WEB_CDN: ${{ secrets.TCR_WEB_CDN }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-        run: |
-          aws cloudfront create-invalidation --distribution-id ${{ env.TCR_WEB_CDN }} --paths "/*"
+
+          aws s3 cp readme.md ${{ secrets.TCR_WEB_S3_PATH }} --region ${{ secrets.AWS_REGION }}          
+      # - name: Invalidate CDN cache for test-coverage report
+      #   env:
+      #     TCR_WEB_S3_PATH: ${{ secrets.TCR_WEB_S3_PATH }}
+      #     TCR_WEB_CDN: ${{ secrets.TCR_WEB_CDN }}
+      #     AWS_REGION: ${{ secrets.AWS_REGION }}
+      #   run: |
+      #     cd ${GITHUB_WORKSPACE}/coverage/lcov-report
+      #     aws cloudfront create-invalidation --distribution-id ${{ env.TCR_WEB_CDN }} --paths "/*"
