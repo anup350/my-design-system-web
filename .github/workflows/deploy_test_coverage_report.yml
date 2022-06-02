@@ -20,14 +20,13 @@ jobs:
       - name: Run test coverage
         run: |
           npm run test-coverage
-          ls -l icov-report
       - name: Deploy test coverage report to s3
         env:
           TCR_WEB_S3_PATH: ${{ secrets.TCR_WEB_S3_PATH }}
           TCR_WEB_CDN: ${{ secrets.TCR_WEB_CDN }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
-          cd icov-report
+          cd coverage/icov-report && ls -l
           aws s3 cp . ${{ env.TCR_WEB_S3_PATH }} --region ${{ env.AWS_REGION }}          
       - name: Invalidate CDN cache for test-coverage report
         env:
