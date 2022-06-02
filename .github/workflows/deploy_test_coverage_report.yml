@@ -24,17 +24,25 @@ jobs:
         run: |
           npm run test-coverage
       - name: Deploy to GitHub Pages
-        uses: crazy-max/ghaction-github-pages@v2
+      # - name: Push generated files to android repository
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          branch: gh-pages
-          folder: docs
-      - name: Deploy test coverage report to s3
-        run: |
-          cd ${GITHUB_WORKSPACE}/coverage/lcov-report
-          export AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
-          export AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          export AWS_DEFAULT_REGION=${{ secrets.AWS_REGION }}
-          aws s3 cp . ${{ secrets.TCR_WEB_S3_PATH }} --recursive
-      - name: Invalidate CDN cache for test-coverage report
-        run: |
-          aws cloudfront create-invalidation --distribution-id ${{ secrets.TCR_WEB_CDN }} --paths "/*"
+          user_name: ${{ secrets.GIT_COMMIT_AUTHOR_NAME }}
+          user_email: ${{ secrets.GIT_COMMIT_AUTHOR_EMAIL }}
+          source_file: 'coverage/lcov-report/'
+          destination_repo: 'anup350/my-design-system-web'
+          destination_branch: 'gh-pages'
+          destination_folder: 'docs'
+          commit_message: 'Updating styles from Figma'
+      # - name: Deploy test coverage report to s3
+      #   run: |
+      #     cd ${GITHUB_WORKSPACE}/coverage/lcov-report
+      #     export AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     export AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     export AWS_DEFAULT_REGION=${{ secrets.AWS_REGION }}
+      #     aws s3 cp . ${{ secrets.TCR_WEB_S3_PATH }} --recursive
+      # - name: Invalidate CDN cache for test-coverage report
+      #   run: |
+      #     aws cloudfront create-invalidation --distribution-id ${{ secrets.TCR_WEB_CDN }} --paths "/*"
