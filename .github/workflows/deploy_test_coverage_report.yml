@@ -1,41 +1,41 @@
-name: Deploy test coverage report - Web
-on:
-  push:
-    branches:
-      - 'feature-devops'
-  pull_request:
-    branches:
-      - 'development'
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2.4.0
-      # - name: Display path
-      #   shell: bash
-      #   run: echo ${GITHUB_WORKSPACE}
-      - name: Install node modules
-      # Convert tokens according to Style Dictionary config
-        run: npm i --force
-      - name: Run test coverage
-        run: |
-          npm run test-coverage
-      - name: Deploy to GitHub Pages
-      # - name: Push generated files to android repository
-        uses: dmnemec/copy_file_to_another_repo_action@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB_2 }}
-        with:
-          user_name: 'anup350'
-          user_email: 'anup.salunke@ymedialabs.com'
-          source_file: 'coverage/lcov-report/'
-          destination_repo: 'anup350/my-design-system-web'
-          destination_branch: 'gh-pages'
-          destination_folder: '/'
-          commit_message: 'Updating styles from Figma'
+# name: Deploy test coverage report - Web
+# on:
+#   push:
+#     branches:
+#       - 'feature-devops'
+#   pull_request:
+#     branches:
+#       - 'development'
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v3
+#       - name: Setup Node.js environment
+#         uses: actions/setup-node@v2.4.0
+#       # - name: Display path
+#       #   shell: bash
+#       #   run: echo ${GITHUB_WORKSPACE}
+#       - name: Install node modules
+#       # Convert tokens according to Style Dictionary config
+#         run: npm i --force
+#       - name: Run test coverage
+#         run: |
+#           npm run test-coverage
+#       - name: Deploy to GitHub Pages
+#       # - name: Push generated files to android repository
+#         uses: dmnemec/copy_file_to_another_repo_action@main
+#         env:
+#           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB_2 }}
+#         with:
+#           user_name: 'anup350'
+#           user_email: 'anup.salunke@ymedialabs.com'
+#           source_file: 'coverage/lcov-report/'
+#           destination_repo: 'anup350/my-design-system-web'
+#           destination_branch: 'gh-pages'
+#           destination_folder: '/'
+#           commit_message: 'Updating styles from Figma'
       # - name: Deploy test coverage report to s3
       #   run: |
       #     cd ${GITHUB_WORKSPACE}/coverage/lcov-report
