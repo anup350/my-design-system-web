@@ -25,7 +25,7 @@ jobs:
       - name: Display folders
         run: |
           ls -l
-          ls coverage/icov-report
+          ls coverage/lcov-report
           ls storybook-static
       - name: Publish test coverage report to publish-repo branch
         uses: dmnemec/copy_file_to_another_repo_action@main
@@ -34,7 +34,7 @@ jobs:
         with:
           user_name: ${{ secrets.GIT_COMMIT_AUTHOR_NAME }}
           user_email: ${{ secrets.GIT_COMMIT_AUTHOR_EMAIL }}
-          source_file: 'coverage/icov-report/'
+          source_file: 'coverage/lcov-report/'
           destination_repo: 'yml-org/mayo-design-system-web'
           destination_branch: 'publish-report'
           destination_folder: '/'
