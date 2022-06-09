@@ -22,11 +22,6 @@ jobs:
         run: npm run test-coverage
       - name: NPM build storybook
         run: npm run build-storybook
-      - name: Display folders
-        run: |
-          ls -l
-          ls coverage/lcov-report
-          ls storybook-static
       - name: CD to test coverage
         run: cd coverage/lcov-report
       - name: Publish test coverage report to publish-repo branch
@@ -36,19 +31,7 @@ jobs:
         with:
           user_name: ${{ secrets.GIT_COMMIT_AUTHOR_NAME }}
           user_email: ${{ secrets.GIT_COMMIT_AUTHOR_EMAIL }}
-          source_file: 'coverage/lcov-report/*.*'
-          destination_repo: 'yml-org/mayo-design-system-web'
-          destination_branch: 'publish-report'
-          destination_folder: '/'
-          commit_message: 'Publishing test coverage report'
-      - name: Publish test coverage report to publish-repo branch 2
-        uses: dmnemec/copy_file_to_another_repo_action@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          user_name: ${{ secrets.GIT_COMMIT_AUTHOR_NAME }}
-          user_email: ${{ secrets.GIT_COMMIT_AUTHOR_EMAIL }}
-          source_file: 'coverage/lcov-report/components'
+          source_file: 'coverage/lcov-report/'
           destination_repo: 'yml-org/mayo-design-system-web'
           destination_branch: 'publish-report'
           destination_folder: '/'
@@ -60,7 +43,7 @@ jobs:
         with:
           user_name: ${{ secrets.GIT_COMMIT_AUTHOR_NAME }}
           user_email: ${{ secrets.GIT_COMMIT_AUTHOR_EMAIL }}
-          source_file: 'storybook-static/*.*'
+          source_file: 'storybook-static'
           destination_repo: 'yml-org/mayo-design-storybook'
           destination_branch: 'publish-storybook'
           destination_folder: '/'
