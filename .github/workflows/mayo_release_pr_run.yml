@@ -31,7 +31,7 @@ jobs:
           user_email: ${{ secrets.GIT_COMMIT_AUTHOR_EMAIL }}
           source_file: '/coverage/icov-report/'
           destination_repo: 'yml-org/mayo-design-system-web'
-          destination_branch: 'publish-reports'
+          destination_branch: 'publish-report'
           destination_folder: '/'
           commit_message: 'Publishing test coverage report'
       - name: Publish storybook to storybookhosting repo's main branch
