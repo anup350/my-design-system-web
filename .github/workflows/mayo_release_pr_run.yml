@@ -19,9 +19,9 @@ jobs:
       - name: NPM build
         run: npm run build
       - name: NPM test coverage
-        run: npm test-coverage
+        run: npm run test-coverage
       - name: NPM build storybook
-        run: npm build-storybook
+        run: npm run build-storybook
       - name: Publish test coverage report to publish-repo branch
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
