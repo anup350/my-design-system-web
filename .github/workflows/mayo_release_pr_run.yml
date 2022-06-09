@@ -1,0 +1,63 @@
+name: Deploy test coverage report - Web
+on:
+  pull_request:
+    branches:
+      - 'development'
+      - 'feature-devops'
+    tags:
+      - 'release/v*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.4.0
+      - name: Install node modules
+        run: npm i --force
+      - name: NPM build
+        run: npm run build
+      - name: NPM test coverage
+        run: npm run test-coverage
+      - name: NPM build storybook
+        run: npm run build-storybook
+      - name: CD to test coverage
+        run: cd coverage/lcov-report
+      - name: Publish test coverage report to publish-repo branch
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          user_name: ${{ secrets.GIT_COMMIT_AUTHOR_NAME }}
+          user_email: ${{ secrets.GIT_COMMIT_AUTHOR_EMAIL }}
+          source_file: 'coverage/lcov-report/'
+          destination_repo: 'yml-org/mayo-design-system-web'
+          destination_branch: 'publish-report'
+          destination_folder: '/'
+          commit_message: 'Publishing test coverage report'
+      - name: Publish storybook to storybookhosting repo's main branch
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          user_name: ${{ secrets.GIT_COMMIT_AUTHOR_NAME }}
+          user_email: ${{ secrets.GIT_COMMIT_AUTHOR_EMAIL }}
+          source_file: 'storybook-static'
+          destination_repo: 'yml-org/mayo-design-storybook'
+          destination_branch: 'publish-storybook'
+          destination_folder: '/'
+          commit_message: 'Publishing test coverage report'
+  # dispatch:
+  #   needs: build
+  #   strategy:
+  #     matrix:
+  #       repo: ['yml-org/mayo-design-token-web']
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Repository Dispatch
+  #       uses: peter-evans/repository-dispatch@v2
+  #       with:
+  #         token: ${{ secrets.API_TOKEN_GITHUB }}
+  #         repository: ${{ matrix.repo }}
+  #         event-type: release-token
